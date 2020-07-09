@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tralala app (frontend training course)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="tralala.css">
+    <!-- <script src="./vue-dev/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <nav id="nav">
+        <ul class="nav-left">
+            <li><i class="home fas fa-home pointer" title="Home"></i></li>
+            <li><i class="boards fas fa-th-list pointer" title="See Boards"></i>&nbsp;Boards</li>
+            <li class="menu-search"><input type="text" class="search" title="Search smth." /></li>
+        </ul>
+        <div id="Tralala">Tralala</div>
+        <ul class="nav-right">
+            <li><i class="fas fa-plus pointer"></i></li>
+            <li><i class="fas fa-user pointer"></i></li>
+        </ul>
+    </nav>
+
+    <div id="menu-bar">
+        <span class="menu-bar-title">Frontend training for the course &laquo;Introduction to Full Stack Development&raquo;</span>
+        <div id="menu-show-bar"><span class="menu-bar-title">
+            <i class="fas fa-ellipsis-v"></i>&nbsp;Show menu</span>
+        </div>
+    </div>
+
+    <div id="app-board" class="board-container">
+        <div class="board-item" v-for="(list, index) in boards" v-bind:id="index+1">
+            <div class="board-title">   {{ list.title }} <span class="more-options"><A href="#" title="More options are disabled">...</A></span></div>
+            <ul>
+                <li class="pointer" v-for="elem in list.items">{{ elem }}<i class="fas fa-pencil-alt pointer" title="Edit"></i></li>
+            </ul>
+            
+            <div class="bottom-link"><a href="#" title="Add new item">+ Add another card</a></div>
+        </div>
+
+        <div class="board-item">
+            <a href="#" title="Add new list">+ Add another list</a> 
+        </div>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:'#app-board',
+            data: {
+                boards: [
+                    { 
+                        'title' : 'To Do', 
+                        'items' : ['Learn HTML', 'Learn CSS', 'Learn JavaScript', 'Learn Vue', 'Create Git Hub account']
+                    },
+                    { 
+                        'title' : 'Doing', 
+                        'items' : ['Prepare resume']
+                    },
+                    { 
+                        'title' : 'Testing/Verifying', 
+                        'items' : ['Twitter app frontend']
+                    },
+                    { 
+                        'title' : 'Deploying', 
+                        'items' : ['Twitter app backend']
+                    }
+                ],
+            },
+            methods: {
+                addBoard() {
+                    alert('New board ID will be ' + this.boards.length);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
